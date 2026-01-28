@@ -142,7 +142,8 @@ body {
    HERO SECTION (MAIN SEARCH AREA)
    ===================================================== */
 .hero {
-  min-height: 70vh;
+  min-height: auto;
+  padding: 80px 70px 40px;
   background: 
     linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
     url("images/tea-estate.jpg");
@@ -155,7 +156,7 @@ body {
   justify-content: center;
   align-items: flex-start;
 
-  padding: 80px 70px;
+ 
   color: #ffffff;
 }
 
@@ -286,10 +287,11 @@ body {
    FEATURES SECTION
    ===================================================== */
 .features {
-    padding: 70px 60px;
+    padding: 50px 60px;
     background: linear-gradient(180deg, #fdf8f2, #ffffff);
     background-color: var(--bg-section);
     text-align: center;
+    
 }
 
 /* Features heading */
@@ -297,6 +299,7 @@ body {
     color: var(--text-dark);
     font-size: 30px;
     margin-bottom: 40px;
+    margin-top: 0;
 }
 
 /* Features grid */
@@ -813,6 +816,7 @@ body {
   color: var(--text-dark);
 }
 
+
 /* =====================================================
    EMPTY STATE – NO RESULTS FOUND
    ===================================================== */
@@ -1026,7 +1030,7 @@ body {
 
   /* Hero */
   .hero {
-    min-height: 55vh;
+    min-height: auto;
     padding: 60px 16px;
     align-items: center;
     text-align: center;
