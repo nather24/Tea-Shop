@@ -33,51 +33,60 @@ function switchMode(mode){
 
 /* RETAIL LOGIC */
 let cart = {};
+function updateQty(name, price, change){
+  cart[name] = cart[name] || { price, qty: 0 };
+  cart[name].qty += change;
 
-// function updateQty(name, price, change){
-//   cart[name] = cart[name] || {price, qty:0};
-//   cart[name].qty += change;
-//   if(cart[name].qty <= 0) delete cart[name];
-//   renderCart();
-// }
+  if(cart[name].qty <= 0){
+    delete cart[name];
+  }
 
-// function renderCart(){
-//   cartItems.innerHTML = "";
-//   let total = 0;
-//   Object.keys(cart).forEach(k=>{
-//     const i = cart[k];
-//     total += i.price * i.qty;
-//     cartItems.innerHTML += `<li>${k} x ${i.qty} = ₹${i.price*i.qty}</li>`;
-//   });
-//   document.getElementById("total").innerText = total;
-// }
-
-function placeRetailOrder(){
-  localStorage.setItem("retailOrder", JSON.stringify(cart));
-  alert("Retail order placed successfully!");
-  cart = {};
   renderCart();
 }
 
-/* CORPORATE LOGIC */
-let selectedPlan = {};
+function renderCart(){
+  const cartItemsEl = document.getElementById("cartItems");
+  const cartBar = document.getElementById("cartBar");
 
-function openForm(plan, price){
-  selectedPlan = { plan, price };
-  corpForm.classList.remove("hidden");
+  cartItemsEl.innerHTML = "";
+
+  let total = 0;
+  let count = 0;
+
+  Object.keys(cart).forEach(k=>{
+    const i = cart[k];
+    total += i.price * i.qty;
+    count += i.qty;
+
+    cartItemsEl.innerHTML += `
+      <li class="flex justify-between mb-2">
+        <span>${k} × ${i.qty}</span>
+        <span>₹${i.price * i.qty}</span>
+      </li>
+    `;
+  });
+
+  document.getElementById("total").innerText = total;
+  document.getElementById("cartTotal").innerText = total;
+  document.getElementById("cartCount").innerText = count;
+
+  // Show / hide cart bar
+  if(count > 0){
+    cartBar.classList.remove("hidden");
+  } else {
+    cartBar.classList.add("hidden");
+  }
 }
 
-function confirmSubscription(){
-  const data = {
-    ...selectedPlan,
-    company: companyName.value,
-    contact: contactPerson.value,
-    phone: phone.value,
-    total: selectedPlan.price * 1.18
-  };
-  localStorage.setItem("corporateSubscription", JSON.stringify(data));
-  alert("Corporate subscription confirmed!");
+function openCart(){
+  document.getElementById("cartDrawer").classList.remove("hidden");
 }
+
+function closeCart(){
+  document.getElementById("cartDrawer").classList.add("hidden");
+}
+
+
 
 let selectedCategory = null;
 
@@ -179,7 +188,7 @@ const teaMenu = [
     price: 50,
     category: "Healthy",
     bestseller: false,
-    image: "./assets/images/tea-order-photo_8.jpg"
+    image: "./assets/images/tea-order-photo_9.jpg"
   }
 ];
 
@@ -303,58 +312,3 @@ function openCorporateForm(packageName){
   alert("Corporate enquiry for: " + packageName);
 }
 
-/* RETAIL LOGIC */
-
-
-function updateQty(name, price, change){
-  cart[name] = cart[name] || { price, qty: 0 };
-  cart[name].qty += change;
-
-  if(cart[name].qty <= 0){
-    delete cart[name];
-  }
-
-  renderCart();
-}
-
-function renderCart(){
-  const cartItemsEl = document.getElementById("cartItems");
-  const cartBar = document.getElementById("cartBar");
-
-  cartItemsEl.innerHTML = "";
-
-  let total = 0;
-  let count = 0;
-
-  Object.keys(cart).forEach(k=>{
-    const i = cart[k];
-    total += i.price * i.qty;
-    count += i.qty;
-
-    cartItemsEl.innerHTML += `
-      <li class="flex justify-between mb-2">
-        <span>${k} × ${i.qty}</span>
-        <span>₹${i.price * i.qty}</span>
-      </li>
-    `;
-  });
-
-  document.getElementById("total").innerText = total;
-  document.getElementById("cartTotal").innerText = total;
-  document.getElementById("cartCount").innerText = count;
-
-  // Show / hide cart bar
-  if(count > 0){
-    cartBar.classList.remove("hidden");
-  } else {
-    cartBar.classList.add("hidden");
-  }
-}
-
-function openCart(){
-  document.getElementById("cartDrawer").classList.remove("hidden");
-}
-
-function closeCart(){
-  document.getElementById("cartDrawer").classList.add("hidden");
-}
