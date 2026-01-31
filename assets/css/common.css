@@ -7,6 +7,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 /* Accessibility focus */
 a:focus,
 button:focus{
@@ -102,6 +106,7 @@ body{
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.6);
   background: rgba(255,255,255,.18);
+  transition: background 0.2s ease;
 }
 
 /* hamburger */
