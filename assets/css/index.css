@@ -1,198 +1,3 @@
-/* =====================================================
-   GLOBAL RESET
-   Removes default browser spacing issues
-   ===================================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-/* ===== Accessibility focus styles ===== */
-a:focus,button:focus{
-  outline: 2px dashed #ffffff;
-  outline-offset: 4px;
-}
-
-/* =====================================================
-   GLOBAL THEME VARIABLES (TEAM STANDARD)
-   Change color here → whole site updates
-   ===================================================== */
-:root {
-  --primary-color: #C97A3D;   /* exact image primary */
-  --primary-dark: #8B4A1F;    /* depth / footer */
-  --text-light: #ffffff;
-  --text-muted: #e7d9cc;
-    --light-bg: #f9f9f9;
-    /* Premium neutrals */
-  --bg-main: #f6f7f9;        /* page background */
-  --bg-section: #fbfbfc;     /* section background */
-  --bg-card: #ffffff;       /* cards only */
-
-  --text-dark: #222222;
-  --text-muted: #666666;
-}
-
-/* =====================================================
-   BODY BASE STYLE
-   ===================================================== */
-body {
-    font-family: 'Poppins', Arial, sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-dark);
-    line-height: 1.6;
-}
-
-/* ===== Micro animations ===== */
-.nav-links a{
-  transition: color 0.2s ease;
-}
-
-.footer-box a{
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-.footer-box a:hover{
-  opacity: 0.85;
-}
-
-/* ================= PREMIUM NAVBAR ================= */
-.navbar{
-  background: linear-gradient(90deg, var(--primary-dark), var(--primary-color));
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  /* soft elevation – not a dark box */
-  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
-}
-
-.nav-container{
-  max-width: 1200px;
-  margin: auto;
-  padding: 16px 22px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.logo{
-  color: var(--text-light);
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: .3px;
-}
-
-.nav-links{
-  display: flex;
-  align-items: center;
-  gap: 26px;
-}
-
-.nav-links a{
-  color: var(--text-light);
-  text-decoration: none;
-  font-size: 14px;
-  position: relative;
-}
-
-.navbar.scrolled{
-  background: linear-gradient(90deg, #7a3f1e, var(--primary-color));
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  transition: all 0.3s ease;
-}
-/* subtle underline like image */
-.nav-links a::after{
-  content:"";
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:2px;
-  background:#fff;
-  transition:.25s;
-}
-.nav-links a:hover::after{ width:100%; }
-
-/* login pill */
-.nav-login{
-  padding: 8px 18px;
-  border-radius: 22px;
-  border: 1px solid rgba(255,255,255,.6);
-  background: rgba(255,255,255,.18);
-}
-
-.menu-icon{
-  display: none;
-  color: #ffffff;
-  font-size: 26px;
-  cursor: pointer;
-}
-
-
-/* mobile */
-@media (max-width: 768px){
-
-  .menu-icon{
-    display: block;
-    font-size: 26px;
-  }
-
-  .nav-links{
-    position: absolute;
-    top: 64px;
-    left: 0;
-    width: 100%;
-
-    background: linear-gradient(
-      180deg,
-      var(--primary-dark),
-      var(--primary-color)
-    );
-
-    display: none;
-    flex-direction: column;
-    align-items: center;
-
-    padding: 16px 0;
-    gap: 6px;
-
-    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
-  }
-
-  .nav-links.active{
-    display: flex;
-    animation: slideDown 0.25s ease-out;
-  }
-
-  .nav-links a{
-    width: 100%;
-    text-align: center;
-    padding: 14px 0;
-    font-size: 16px;
-  }
-
-  /* Login looks like normal menu item */
-  .nav-login{
-    margin: 10px 0 6px;
-    padding: 12px 0;
-    width: 100%;
-    text-align: center;
-    border-radius: 0;
-    background: rgba(255,255,255,0.12);
-  }
-}
-
-/* Clean slide animation */
-@keyframes slideDown{
-  from{
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 
 /* =====================================================
    HERO SECTION (MAIN SEARCH AREA)
@@ -222,9 +27,6 @@ body {
 }
 
 
-
-
-
 .hero h1 {
   
   font-size: 42px;
@@ -237,7 +39,6 @@ body {
   color: var(--text-dark);
   font-size: 17px;
   max-width: 520px;
-  margin-bottom: 28px;
   color: #f3e7db;
   margin-bottom: 12px;
 }
@@ -286,8 +87,6 @@ body {
 }
 
 
-
-
 .search-box input{
   width: 420px;
   max-width: 100%;
@@ -298,7 +97,6 @@ body {
   outline: none;
   box-shadow: 0 10px 28px rgba(0,0,0,0.25);
 }
-
 
 
 
@@ -340,8 +138,6 @@ body {
   outline: none;
   font-family: 'Poppins', sans-serif;
 }
-
-
 
 
 
@@ -392,7 +188,6 @@ body {
   color: #ffffff;
   opacity: 0.9;
 }
-
 
 
 
@@ -661,157 +456,6 @@ body {
 
 
 
-/* ================= FINAL PROFESSIONAL FOOTER ================= */
-
-.footer{
-  background: linear-gradient(
-    180deg,
-    #9b5b2e,
-    #5a2f17
-  );
-  color: #eaded3;
-  margin-top: 90px;
-}
-
-/* Footer layout */
-.footer-container{
-  max-width: 1200px;
-  margin: auto;
-  padding: 54px 22px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 36px;
-
-  /* Prevent click overlap bugs */
-  position: relative;
-}
-
-/* Footer column */
-.footer-box{
-  position: relative;
-  z-index: 1;
-}
-
-/* Headings */
-.footer-box h3,
-.footer-box h4{
-  color: #ffffff;
-  margin-bottom: 14px;
-  font-weight: 500;
-}
-
-/* Normal text (NOT clickable) */
-.footer-box p{
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 10px;
-  pointer-events: none;
-}
-
-/* Footer links (TEXT ONLY clickable) */
-.footer-box a{
-  font-size: 14px;
-  color: #eaded3;
-  text-decoration: none;
-  line-height: 1.8;
-}
-
-.footer-box a:hover{
-  color: #ffffff;
-  text-decoration: underline;
-}
-
-/* ================= SOCIAL ICONS ================= */
-
-.social-icons{
-  display: flex;
-  gap: 14px;
-  margin-top: 8px;
-}
-
-/* Icon circle */
-.social-icons a{
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid #c97a3d;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-decoration: none;
-  transition: all 0.25s ease;
-}
-
-/* Icon itself (FORCED COLOR FIX) */
-.social-icons a i{
-  font-size: 18px;
-  color: #c97a3d;
-}
-
-/* Hover */
-.social-icons a:hover{
-  background: #c97a3d;
-  transform: translateY(-3px);
-}
-
-.social-icons a:hover i{
-  color: #ffffff;
-}
-
-/* Remove dotted focus */
-.social-icons a:focus{
-  outline: none;
-}
-
-/* Footer bottom */
-.footer-bottom{
-  text-align: center;
-  padding: 18px;
-  font-size: 13px;
-  color: #e6d2c0;
-  border-top: 1px solid rgba(255,255,255,0.18);
-}
-/* ===== BRAND COLOR HOVER EFFECTS ===== */
-
-/* WhatsApp */
-.social.whatsapp:hover{
-  background: #25D366;       /* WhatsApp green */
-  border-color: #25D366;
-}
-.social.whatsapp:hover i{
-  color: #ffffff;
-}
-
-/* Instagram */
-.social.instagram:hover{
-  background: #E4405F;       /* Instagram pink */
-  border-color: #E4405F;
-}
-.social.instagram:hover i{
-  color: #ffffff;
-}
-
-/* Facebook */
-.social.facebook:hover{
-  background: #1877F2;       /* Facebook blue */
-  border-color: #1877F2;
-}
-.social.facebook:hover i{
-  color: #ffffff;
-}
-
-
-
-
-
-
-
-
-
-
 /* =====================================================
    RESPONSIVE — TABLET & MOBILE
    ===================================================== */
@@ -820,15 +464,6 @@ body {
 
 
    @media (max-width: 768px) {
-
-  /* Navbar */
-  .navbar {
-    padding: 14px 18px;
-  }
-
-  .nav-links a {
-    font-size: 13px;
-  }
 
   /* Hero */
   .hero {
@@ -921,17 +556,3 @@ body {
   }
 }
 
-@media (max-width: 768px){
-
-  .menu-icon{
-    display: block;
-  }
-
-  .nav-links{
-    display: none;
-  }
-
-  .nav-links.active{
-    display: flex;
-  }
-}
