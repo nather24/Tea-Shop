@@ -1,8 +1,8 @@
 /* Mobile menu toggle */
-function toggleMenu(){
-  document.getElementById("navLinks").classList.toggle("active");
+function toggleMenu() {
+  var nav = document.getElementById("navLinks");
+  nav.classList.toggle("active");
 }
-
 /* Navbar scroll effect */
 window.addEventListener("scroll", function () {
   var navbar = document.querySelector(".navbar");
