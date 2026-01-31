@@ -3,28 +3,28 @@ const retail = document.getElementById("retailSection")
 const corporate = document.getElementById("monthlySection")
 const rBtn = document.getElementById("retailBtn")
 const cBtn = document.getElementById("packageBtn")
-var closepop=document.getElementById("close-pop")
-function switchMode(mode){
-  
+var closepop = document.getElementById("close-pop")
+function switchMode(mode) {
 
-  if(mode === "retail"){
+
+  if (mode === "retail") {
     retail.classList.remove("hidden")
     corporate.classList.add("hidden")
 
-    rBtn.classList.add("bg-green-700","text-white")
+    rBtn.classList.add("bg-amber-700", "text-white")
     rBtn.classList.remove("bg-gray-200")
 
     cBtn.classList.add("bg-gray-200")
-    cBtn.classList.remove("bg-green-700","text-white")
+    cBtn.classList.remove("bg-amber-700", "text-white")
   } else {
     corporate.classList.remove("hidden")
     retail.classList.add("hidden")
 
-    cBtn.classList.add("bg-green-700","text-white")
+    cBtn.classList.add("bg-amber-700", "text-white")
     cBtn.classList.remove("bg-gray-200")
 
     rBtn.classList.add("bg-gray-200")
-    rBtn.classList.remove("bg-green-700","text-white")
+    rBtn.classList.remove("bg-amber-700", "text-white")
 
     renderPackages()
   }
@@ -33,18 +33,18 @@ function switchMode(mode){
 
 /* RETAIL LOGIC */
 let cart = {};
-function updateQty(name, price, change){
+function updateQty(name, price, change) {
   cart[name] = cart[name] || { price, qty: 0 };
   cart[name].qty += change;
 
-  if(cart[name].qty <= 0){
+  if (cart[name].qty <= 0) {
     delete cart[name];
   }
 
   renderCart();
 }
 
-function renderCart(){
+function renderCart() {
   const cartItemsEl = document.getElementById("cartItems");
   const cartBar = document.getElementById("cartBar");
 
@@ -53,7 +53,7 @@ function renderCart(){
   let total = 0;
   let count = 0;
 
-  Object.keys(cart).forEach(k=>{
+  Object.keys(cart).forEach(k => {
     const i = cart[k];
     total += i.price * i.qty;
     count += i.qty;
@@ -71,22 +71,20 @@ function renderCart(){
   document.getElementById("cartCount").innerText = count;
 
   // Show / hide cart bar
-  if(count > 0){
+  if (count > 0) {
     cartBar.classList.remove("hidden");
   } else {
     cartBar.classList.add("hidden");
   }
 }
 
-function openCart(){
+function openCart() {
   document.getElementById("cartDrawer").classList.remove("hidden");
 }
 
-function closeCart(){
+function closeCart() {
   document.getElementById("cartDrawer").classList.add("hidden");
 }
-
-
 
 let selectedCategory = null;
 
@@ -94,13 +92,13 @@ let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
 let selectedTea = null;
 
-function openCustomization(tea){
+function openCustomization(tea) {
   selectedTea = tea;
   customTeaName.innerText = tea.name;
   customModal.classList.remove("hidden");
 }
 
-function addCustomizedItem(){
+function addCustomizedItem() {
   const note = `
     ${lessSugar.checked ? "Less Sugar " : ""}
     ${strongTea.checked ? "Strong" : ""}
@@ -108,18 +106,18 @@ function addCustomizedItem(){
   updateQty(selectedTea.name + " (" + note + ")", selectedTea.price, 1);
   customModal.classList.add("hidden");
 }
- closepop.addEventListener("click",function(){
+closepop.addEventListener("click", function () {
   customModal.classList.add("hidden");
- })
-function selectCategory(category){
+})
+function selectCategory(category) {
   selectedCategory = category;
 
-  document.querySelectorAll(".typeBtn").forEach(btn=>{
-    btn.classList.remove("bg-green-700","text-white");
+  document.querySelectorAll(".typeBtn").forEach(btn => {
+    btn.classList.remove("bg-amber-700", "text-white");
     btn.classList.add("bg-gray-200");
   });
   event.target.classList.remove("bg-gray-200");
-  event.target.classList.add("bg-green-700","text-white");
+  event.target.classList.add("bg-amber-700", "text-white");
   renderMenu();
 }
 document.addEventListener("DOMContentLoaded", () => {
@@ -157,7 +155,7 @@ const teaMenu = [
   },
   {
     name: "Irani Chai",
-    price: 70,
+    price: 120,
     category: "Milk Special",
     bestseller: true,
     image: "./assets/images/tea-order-photo_4.jpg"
@@ -183,16 +181,24 @@ const teaMenu = [
     bestseller: false,
     image: "./assets/images/tea-order-photo_8.jpg"
   },
-   {
+  {
     name: "Black Tea",
     price: 50,
     category: "Healthy",
     bestseller: false,
     image: "./assets/images/tea-order-photo_9.jpg"
   }
+  ,
+  {
+    name: "Tea with Biscuits",
+    price: 80,
+    category: "Snacks",
+    bestseller: false,
+    image: "./assets/images/tea-order-photo_10.jpg"
+  }
 ];
 
-function renderMenu(){
+function renderMenu() {
   const search = document.getElementById("searchInput")?.value.toLowerCase() || "";
 
   const menu = teaMenu.filter(t =>
@@ -202,17 +208,17 @@ function renderMenu(){
 
   menuGrid.innerHTML = "";
 
-  if(menu.length === 0){
-   if(menu.length === 0){
-  menuGrid.innerHTML = `
+  if (menu.length === 0) {
+    if (menu.length === 0) {
+      menuGrid.innerHTML = `
     <div class="col-span-2 text-center mt-10">
       <p class="text-4xl">☕</p>
       <p class="text-gray-500 mt-2">No tea found</p>
       <p class="text-sm text-gray-400">Try another category</p>
     </div>
   `;
-  return;
-}
+      return;
+    }
   }
 
   menu.forEach(t => {
@@ -233,19 +239,19 @@ function renderMenu(){
           <p class="text-sm text-gray-500">${t.category}</p>
           <p>₹${t.price}</p>
 
-          ${t.bestseller ? `<span class="text-xs text-orange-600 font-bold">⭐ BEST SELLER</span>` : ""}
+          ${t.bestseller ? `<span class="text-xs text-orange-600 font-bold">⭐ GOOD RATING</span>` : ""}
 
           <div class="flex gap-2 mt-2">
             <button onclick="updateQty('${t.name}',${t.price},-1)"
               class="px-3 bg-gray-300 rounded">−</button>
 
-            <button onclick="openCustomization(${JSON.stringify(t).replace(/"/g,'&quot;')})"
+            <button onclick="openCustomization(${JSON.stringify(t).replace(/"/g, '&quot;')})"
               class="px-3 bg-blue-600 text-white rounded">
               Customize
             </button>
 
             <button onclick="updateQty('${t.name}',${t.price},1)"
-              class="px-3 bg-green-600 text-white rounded">+</button>
+              class="px-3 bg-amber-700 text-white rounded">+</button>
           </div>
         </div>
       </div>
@@ -254,7 +260,7 @@ function renderMenu(){
 }
 
 
-function toggleFav(name){
+function toggleFav(name) {
   favorites = favorites.includes(name)
     ? favorites.filter(f => f !== name)
     : [...favorites, name];
@@ -284,7 +290,7 @@ const monthlyPackages = [
     includes: ["All Tea Types", "On-call refill", "Priority support"]
   }
 ];
-  function renderPackages(){
+function renderPackages() {
   const grid = document.getElementById("packageGrid");
   grid.innerHTML = "";
 
@@ -294,21 +300,93 @@ const monthlyPackages = [
         <h3 class="text-lg font-bold mb-1">${p.name}</h3>
         <p class="text-sm text-gray-500">${p.cupsPerDay}</p>
 
-        <p class="text-xl font-semibold my-2 text-green-700">${p.price}</p>
+        <p class="text-xl font-semibold my-2 text-amber-700">${p.price}</p>
 
         <ul class="text-sm text-gray-600 mb-3">
           ${p.includes.map(i => `<li>✔ ${i}</li>`).join("")}
         </ul>
 
         <button onclick="openCorporateForm('${p.name}')"
-          class="w-full py-2 bg-green-600 text-white rounded">
+          class="w-full py-2 bg-amber-700 text-white rounded">
           Request Subscription
         </button>
       </div>
     `;
   });
 }
-function openCorporateForm(packageName){
+function openCorporateForm(packageName) {
   alert("Corporate enquiry for: " + packageName);
 }
 
+//form validation
+const submitwithoutLoginbtn = document.getElementById("submitwithoutLoginbtn")
+const submitwithLoginbtn = document.getElementById("submitwithLoginbtn")
+const txtName = document.getElementById("txtName")
+const txtMobile = document.getElementById("txtMobile")
+const txtAddress = document.getElementById("txtAddress")
+const spnErrorName = document.getElementById("spnErrorName")
+const spnErrorMobile = document.getElementById("spnErrorMobile")
+const spnErrorAddress = document.getElementById("spnErrorAddress")
+const namePattern = /^[A-Za-z]+$/;
+const mobilePattern = /^[0-9]{10}$/;
+var isvalid = true
+submitwithoutLoginbtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  isvalid = true
+  if (txtName.value == "") {
+    spnErrorName.innerHTML = "Please enter the name";
+    isvalid = false;
+  }
+
+  else {
+    if (!namePattern.test(txtName.value)) {
+      spnErrorName.innerHTML = "Name must contain alphabets only";
+      isvalid = false;
+    }
+    else {
+      spnErrorName.innerHTML = "";
+    }
+
+  }
+
+  if (txtMobile.value == "") {
+    spnErrorMobile.innerHTML = "Please enter the mobile number";
+    isvalid = false;
+  }
+
+  else {
+    if (!mobilePattern.test(txtMobile.value)) {
+      spnErrorMobile.innerHTML = "Enter a valid 10-digit mobile number";
+      isvalid = false;
+    }
+    else {
+      spnErrorMobile.innerHTML = "";
+    }
+
+  }
+
+  if (txtAddress.value == "") {
+    spnErrorAddress.innerHTML = "Please enter full address";
+    isvalid = false;
+  }
+  else {
+    if (txtAddress.value.length < 10) {
+      spnErrorAddress.innerHTML =
+        "Address must be at least 10 characters long";
+      isValid = false;
+    }
+    else {
+      spnErrorAddress.innerHTML = "";
+    }
+
+  }
+
+  if (isvalid)
+    alert("You ordered sucessfully")
+
+})
+
+submitwithLoginbtn.addEventListener("click", function (event) {
+  event.preventDefault();
+window.location.href = "./login.html";
+})
