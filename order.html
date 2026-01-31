@@ -10,21 +10,9 @@
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="./assets/css/common.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-  
-  <style>
-    html,
-    body {
-      height: 100%;
-      overflow-x: hidden;
-    }
-    #cartBar, #cartDrawer {
-  position: fixed !important;
-  transform: none !important;
-}
-body {
-  transform: none !important;
-}
-  </style>
+  <link rel="stylesheet" href="./assets/css/order.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -32,7 +20,7 @@ body {
   <div class="page-wrapper">
     <header class="navbar">
       <div class="nav-container">
-        <div class="logo">Tea Shop Finder</div>
+        <div class="logo">OruTeaSollu</div>
         <nav class="nav-links" id="navLinks">
           <a href="index.html">Home</a>
           <a href="about.html">About</a>
@@ -50,7 +38,7 @@ body {
   <section class="mt-5 p-2">
     <div class="flex gap-2 mb-4">
       <button id="retailBtn" onclick="switchMode('retail')"
-        class="flex-1 py-2 rounded bg-green-700 text-white font-semibold">
+        class="flex-1 py-2 rounded bg-amber-700 text-white font-semibold">
         Retail Order
       </button>
 
@@ -67,12 +55,13 @@ body {
     <h2 class="text-xl font-bold mb-4">Retail Order</h2>
     <!-- TEA TYPES -->
     <div class="flex gap-3 overflow-x-auto mb-4 pb-2">
-      <button onclick="selectCategory(null)" class="typeBtn p-2  bg-green-700 text-white">All</button>
+      <button onclick="selectCategory(null)" class="typeBtn p-2  bg-amber-700 text-white">All</button>
       <button onclick="selectCategory('Popular')" class="typeBtn p-2 bg-gray-200">Popular</button>
       <button onclick="selectCategory('Healthy')" class="typeBtn p-2 bg-gray-200">Healthy</button>
       <button onclick="selectCategory('Milk Special')" class="typeBtn p-2 bg-gray-200">Milk Special</button>
       <button onclick="selectCategory('Premium')" class="typeBtn p-2 bg-gray-200">Premium</button>
       <button onclick="selectCategory('Cold')" class="typeBtn p-2 bg-gray-200">Cold</button>
+      <button onclick="selectCategory('Snacks')" class="typeBtn p-2 bg-gray-200">Tea with Biscuits</button>
     </div>
 
     <input id="searchInput" onkeyup="renderMenu()" placeholder="Search tea..." class="w-full mb-4 p-2 border rounded">
@@ -100,7 +89,7 @@ body {
           <input type="checkbox" id="strongTea"> Strong Tea
         </label>
 
-        <button onclick="addCustomizedItem()" class="w-full bg-green-700 text-white py-2 rounded">
+        <button onclick="addCustomizedItem()" class="w-full bg-amber-700 text-white py-2 rounded">
           Add to Cart
         </button>
       </div>
@@ -119,7 +108,7 @@ body {
         <p class="text-xs text-gray-500">View order summary</p>
       </div>
 
-      <button onclick="openCart()" class="bg-green-700 text-white px-5 py-2 rounded-lg">
+      <button onclick="openCart()" class="bg-amber-700 text-white px-5 py-2 rounded-lg">
         View Cart
       </button>
     </div>
@@ -134,13 +123,28 @@ body {
       <h3 class="text-lg font-bold mb-3">Your Cart</h3>
       <ul id="cartItems" class="space-y-3"></ul>
       <div class="flex justify-between font-semibold mt-4 border-t pt-3">
-        <span>Total</span>
+        <span>Total Order</span>
         <span>₹<span id="total">0</span></span>
       </div>
 
-      <button class="w-full mt-4 bg-green-700 text-white py-3 rounded-lg text-lg font-semibold">
-        Checkout
+      <form>
+    <input type="text" id="txtName" class="w-full border border-neutral-700 rounded p-3 mb-4" placeholder="Name"></input>
+    <span id="spnErrorName" class="text-red-800"></span>
+    <input type="text" id="txtMobile" class="w-full border border-neutral-700 rounded p-3 mb-4"  placeholder="Mobile Number">
+    <span id="spnErrorMobile" class="text-red-800"></span>
+    </input>
+    <textarea id="txtAddress" class="w-full border border-neutral-700 rounded p-3 h-24 mb-4" placeholder="Address"></textarea>
+<span id="spnErrorAddress" class="text-red-800"></span>
+     <button id="submitwithoutLoginbtn" class="w-full mt-4 bg-amber-700 text-white py-3 rounded-lg text-lg font-semibold">
+        Submit Order Without Login
       </button>
+      <br>
+       <button id="submitwithLoginbtn" href="./login.html" class="w-full mt-4 bg-amber-700 text-white py-3 rounded-lg text-lg font-semibold">
+       Submit Order With Login
+       </button>
+      </form>
+
+     
 
       <button onclick="closeCart()" class="w-full mt-2 text-gray-500 text-sm">
         Close
@@ -158,7 +162,7 @@ body {
     <div class="footer-container">
 
       <div class="footer-box">
-        <h3>Tea Shop Finder</h3>
+        <h3>OruTeaSollu</h3>
         <p>Discover the best tea shops near you with instant directions.</p>
       </div>
 
@@ -172,7 +176,7 @@ body {
 
       <div class="footer-box">
         <h4>Contact</h4>
-        <p>Email: support@teashopfinder.com</p>
+        <p>Email: support@OruTeaSollu.com</p>
         <p>Location: Tamil Nadu</p>
       </div>
 
@@ -193,7 +197,7 @@ body {
     </div>
 
     <div class="footer-bottom">
-      © 2026 Tea Shop Finder. All rights reserved.
+      © 2026 OruTeaSollu Finder. All rights reserved.
     </div>
   </footer>
 
