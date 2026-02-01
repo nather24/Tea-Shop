@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order</title>
+    <title>Review</title>
      <link href="./src/output.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -136,20 +136,18 @@
 <div class="bg-neutral-800 rounded-xl p-6 lg:col-span-1 text-white">
     <h3 class="text-lg font-semibold mb-4">Leave a Review</h3>
 
-    <select class="w-full bg-neutral-900 border border-neutral-700 rounded p-2 mb-3">
+    <select id="drpType" class="w-full bg-neutral-900 border border-neutral-700 rounded p-2 mb-3">
+      <option>--Please select--</option>
       <option>Select a Tea Shop</option>
       <option>Royal Tea - Erode</option>
       <option>Chai Kings - Anthiyur</option>
     </select>
-
+    
     <div class="text-yellow-400 mb-3 text-lg">★★★★★</div>
 
-    <textarea
-      class="w-full bg-neutral-900 border border-neutral-700 rounded p-3 h-24 mb-4"
-      placeholder="Write your review...">
-    </textarea>
+    <textarea id="txtReview" class="w-full bg-neutral-900 border border-neutral-700 rounded p-3 h-24 mb-4" placeholder="Write your review..."></textarea>
 
-    <button onclick="Snacks" class="w-full bg-green-500 hover:bg-green-600 text-black font-semibold py-2 rounded-lg">
+    <button id="btnsubmit" type="button" class="w-full bg-green-500 hover:bg-green-600 text-black font-semibold py-2 rounded-lg">
       Submit Review
     </button>
   </div>
@@ -204,6 +202,6 @@
 </footer>
 
 <script src="./assets/js/common.js"></script>
-    
+<script src="./assets/js/review.js"></script>
 </body>
 </html>
