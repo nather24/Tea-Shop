@@ -67,13 +67,14 @@
 
     <div class="inputbox group">
         
-      <a href="#" id="signin" style="color: white;">Login</a>
+      <a href="#" id="signin" style="color: white;">Have an account?Login</a>
     </div>
 
     <div class="inputBox">
       
        
-         <a href="./index.html" input type="submit" style="color: white;text-decoration: underline;display: inline-block; justify-content: center;">Register Account</a>
+         <a href="./index.html" input type="submit" style="color: white;text-decoration: underline;">Register Account</a>
+    
 
      
     </div>
@@ -191,11 +192,10 @@ body.signup::after
     opacity: 1;
 }
 .container{
-   
     position:relative;
     width: 350px;
     height: 340px;
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 0 5px 25px rgba(0,0,0,0,25);
     display: flex;
     justify-content: center;
@@ -210,6 +210,7 @@ body.signup .container{
 .container::before{
     content: '';
     position:absolute;
+    inset: -3px;
     width: 100%;
     height: 100%;
     background: repeating-conic-gradient(from var(--a), #3ddc4b 0%, #173015 10%,transparent 10%,transparent 80%,#53f165 100%);
@@ -217,6 +218,21 @@ body.signup .container{
     animation: animate 2.5s linear infinite;
     z-index: 1;
 }
+
+
+.container::after{
+    content: '';
+    position:absolute;
+    width: 100%;
+    height: 100%;
+    background: repeating-conic-gradient(from var(--a), #3ddc4b 0%, #173015 10%,transparent 10%,transparent 80%,#53f165 100%);
+    border-radius: 20px;
+    animation: animate 2.5s linear infinite;
+    z-index: 2;
+}
+
+
+
 body.signup .container::before
 {
     filter: hue-rotate(140deg);
@@ -230,11 +246,11 @@ body.signup .container::before
 
 @keyframes animate{
     0%{
-         --a: 0deg
+         --a: 0deg;
     }
     
     100%{
-        --a: 360deg
+        --a: 360deg;
         
     }
 }
