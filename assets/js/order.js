@@ -315,7 +315,7 @@ function renderPackages() {
   });
 }
 function openCorporateForm(packageName) {
-  alert("Corporate enquiry for: " + packageName);
+  alert("Please feel free fill Enquiry form for: " + packageName);
 }
 
 //form validation
@@ -382,7 +382,8 @@ submitwithoutLoginbtn.addEventListener("click", function (event) {
   }
 
   if (isvalid)
-    alert("You ordered sucessfully")
+   // alert("You ordered sucessfully")
+  window.location.href = "./thanksorder.html";
 
 })
 
@@ -390,3 +391,76 @@ submitwithLoginbtn.addEventListener("click", function (event) {
   event.preventDefault();
 window.location.href = "./login.html";
 })
+
+const btnEnquire=document.getElementById("btnEnquire")
+const txtEnqName=document.getElementById("txtEnqName")
+const txtEnqMobile=document.getElementById("txtEnqMobile")
+const spnEnqErrorName=document.getElementById("spnEnqErrorName")
+const spnEnqErrorMobile=document.getElementById("spnEnqErrorMobile")
+const txtEnqEmail=document.getElementById("txtEnqEmail")
+const txtEnqComapny=document.getElementById("txtEnqComapny")
+const spnEnqErrorEmail=document.getElementById("spnEnqErrorEmail")
+const spnEnqErrorComapny=document.getElementById("spnEnqErrorComapny")
+const mobilePattern1 = /^[0-9]{10}$/;
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    let isvalidEnq=true
+   btnEnquire.addEventListener("click",function(event){
+    //event.preventDefault();
+    isvalidEnq=true
+    if(txtEnqName.value=="")
+    {
+        spnEnqErrorName.innerHTML="Please enter the name"
+        isvalidEnq=false
+    }
+    else{
+        spnEnqErrorName.innerHTML=""
+    }
+    if(txtEnqMobile.value=="")
+    {
+       spnEnqErrorMobile.innerHTML="Please enter the mobile number"
+       isvalidEnq=false
+    }
+    else {
+    if (!mobilePattern1.test(txtEnqMobile.value)) {
+      spnEnqErrorMobile.innerHTML = "Enter a valid 10-digit mobile number";
+      isvalidEnq = false;
+    }
+    else {
+      spnEnqErrorMobile.innerHTML = "";
+    }
+
+  }
+  if(txtEnqEmail.value=="")
+    {
+       spnEnqErrorEmail.innerHTML="Please enter the email"
+       isvalidEnq=false
+    }
+    else {
+    if (!emailRegex.test(txtEnqEmail.value)) {
+      spnEnqErrorEmail.innerHTML = "Please enter valid email";
+      isvalidEnq = false;
+    }
+    else {
+      spnEnqErrorEmail.innerHTML = "";
+    }
+
+  }
+
+  if(txtEnqComapny.value=="")
+    {
+        spnEnqErrorComapny.innerHTML="Please enter the company name"
+        isvalidEnq=false
+    }
+    else{
+        spnEnqErrorComapny.innerHTML=""
+    }
+
+   
+    if(isvalidEnq)
+    {
+     alert("Your enquire sucessfully added.Our Team will contact you soon")
+     location.reload();   // refresh page
+    }
+   
+})
+
